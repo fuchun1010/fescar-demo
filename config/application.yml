@@ -20,6 +20,10 @@ spring:
       poolPingConnectionsNotUsedFor: 60000
       removeAbandoned: true
       validationQuery: SELECT 1
+      initialSize: 5
+      minIdle: 5
+      maxActive: 20
+      maxWait: 60000
     account:
       driverClassName: com.mysql.jdbc.Driver
       url: jdbc:mysql://localhost:3306/account?useSSL=false
@@ -28,5 +32,9 @@ spring:
       poolPingConnectionsNotUsedFor: 60000
       removeAbandoned: true
       validationQuery: SELECT 1
+      initialSize: 5
+      minIdle: 5
+      maxActive: 20
+      maxWait: 60000
 
 
