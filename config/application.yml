@@ -1,2 +1,31 @@
 server:
   port: 10001
+  servlet:
+    context-path: /fescar_demo
+
+spring:
+  application:
+    name: fescar_demo
+  http:
+    encoding:
+      charset: UTF-8
+      enabled: true
+      force: true
+
+  datasource:
+    order:
+      driverClassName: com.mysql.jdbc.Driver
+      url: jdbc:mysql://localhost:3306/orders?useSSL=false
+      username: root
+      password:
+      poolPingConnectionsNotUsedFor: 60000
+      removeAbandoned: true
+    account:
+      driverClassName: com.mysql.jdbc.Driver
+      url: jdbc:mysql://localhost:3306/account?useSSL=false
+      username: root
+      password:
+      poolPingConnectionsNotUsedFor: 60000
+      removeAbandoned: true
+
+

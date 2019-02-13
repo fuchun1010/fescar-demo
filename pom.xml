@@ -24,6 +24,9 @@
         <maven.compiler.target>1.8</maven.compiler.target>
         <junit-version>4.11</junit-version>
         <guava-version>23.0</guava-version>
+        <fescar.version>0.1.4</fescar.version>
+        <netty4.version>4.1.24.Final</netty4.version>
+        <mysql-connector.version>8.0.15</mysql-connector.version>
     </properties>
 
     <dependencies>
@@ -45,6 +48,62 @@
             <artifactId>guava</artifactId>
             <version>${guava-version}</version>
         </dependency>
+
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>druid</artifactId>
+            <version>1.1.13</version>
+        </dependency>
+
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>${mysql-connector.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>io.netty</groupId>
+            <artifactId>netty-all</artifactId>
+            <version>${netty4.version}</version>
+        </dependency>
+
+        <!--fescar -->
+        <dependency>
+            <groupId>com.alibaba.fescar</groupId>
+            <artifactId>fescar-common</artifactId>
+            <version>${fescar.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.alibaba.fescar</groupId>
+            <artifactId>fescar-config</artifactId>
+            <version>${fescar.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.alibaba.fescar</groupId>
+            <artifactId>fescar-server</artifactId>
+            <version>${fescar.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.alibaba.fescar</groupId>
+            <artifactId>fescar-core</artifactId>
+            <version>${fescar.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.alibaba.fescar</groupId>
+            <artifactId>fescar-rm-datasource</artifactId>
+            <version>${fescar.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.alibaba.fescar</groupId>
+            <artifactId>fescar-tm</artifactId>
+            <version>${fescar.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.alibaba.fescar</groupId>
+            <artifactId>fescar-spring</artifactId>
+            <version>${fescar.version}</version>
+        </dependency>
+
 
     </dependencies>
 
