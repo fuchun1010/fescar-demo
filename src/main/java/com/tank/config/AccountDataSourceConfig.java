@@ -3,9 +3,11 @@ package com.tank.config;
 import com.alibaba.druid.pool.DruidDataSource;
 import com.alibaba.fescar.rm.datasource.DataSourceProxy;
 import com.google.common.base.Preconditions;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.jdbc.core.JdbcTemplate;
 
 import javax.sql.DataSource;
 import java.util.Arrays;
@@ -18,7 +20,7 @@ import java.util.Objects;
 @Configuration
 public class AccountDataSourceConfig {
 
-  @Bean(initMethod = "init", destroyMethod = "close", name = "orderDs")
+  @Bean(initMethod = "init", destroyMethod = "close", name = "accountDs")
   public DruidDataSource initAccountDataSource() {
     DruidDataSource dataSource = new DruidDataSource();
     Preconditions.checkArgument(Objects.nonNull(username));
@@ -40,9 +42,15 @@ public class AccountDataSourceConfig {
   }
 
   @Bean("accountProxyDs")
-  public DataSource dataSource(DruidDataSource druidDataSource) {
+  public DataSource dataSource(@Qualifier("accountDs") DruidDataSource druidDataSource) {
     DataSourceProxy dataSourceProxy = new DataSourceProxy(druidDataSource);
     return dataSourceProxy;
+  }
+
+  @Bean("accountJdbcTemplate")
+  public JdbcTemplate initAccountJdbcTemplate(@Qualifier("accountDs") DruidDataSource druidDataSource) {
+    final JdbcTemplate jdbcTemplate = new JdbcTemplate(druidDataSource);
+    return jdbcTemplate;
   }
 
 

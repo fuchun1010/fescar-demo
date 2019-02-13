@@ -3,9 +3,11 @@ package com.tank.config;
 import com.alibaba.druid.pool.DruidDataSource;
 import com.alibaba.fescar.rm.datasource.DataSourceProxy;
 import com.google.common.base.Preconditions;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.jdbc.core.JdbcTemplate;
 
 import javax.sql.DataSource;
 import java.util.Arrays;
@@ -39,10 +41,17 @@ public class OrderDataSourceConfig {
     return dataSource;
   }
 
+
   @Bean("orderProxyDs")
-  public DataSource dataSource(DruidDataSource druidDataSource) {
+  public DataSource dataSource(@Qualifier("orderDs") DruidDataSource druidDataSource) {
     DataSourceProxy dataSourceProxy = new DataSourceProxy(druidDataSource);
     return dataSourceProxy;
+  }
+
+  @Bean("orderJdbcTemplate")
+  public JdbcTemplate initAccountJdbcTemplate(@Qualifier("orderDs") DruidDataSource druidDataSource) {
+    final JdbcTemplate jdbcTemplate = new JdbcTemplate(druidDataSource);
+    return jdbcTemplate;
   }
 
 

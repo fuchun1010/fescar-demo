@@ -10,5 +10,5 @@ public interface AccountService {
    * @param name
    * @param money
    */
-  void deduct(String name, double money);
+  void deduct(final String name, double money);
 }

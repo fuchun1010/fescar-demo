@@ -13,7 +13,7 @@ spring:
       force: true
   datasource:
     order:
-      driverClassName: com.mysql.jdbc.Driver
+      driverClassName: com.mysql.cj.jdbc.Driver
       url: jdbc:mysql://localhost:3306/orders?useSSL=false
       username: root
       password:
@@ -25,7 +25,7 @@ spring:
       maxActive: 20
       maxWait: 60000
     account:
-      driverClassName: com.mysql.jdbc.Driver
+      driverClassName: com.mysql.cj.jdbc.Driver
       url: jdbc:mysql://localhost:3306/account?useSSL=false
       username: root
       password:
