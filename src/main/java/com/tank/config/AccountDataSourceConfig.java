@@ -48,8 +48,8 @@ public class AccountDataSourceConfig {
   }
 
   @Bean("accountJdbcTemplate")
-  public JdbcTemplate initAccountJdbcTemplate(@Qualifier("accountDs") DruidDataSource druidDataSource) {
-    final JdbcTemplate jdbcTemplate = new JdbcTemplate(druidDataSource);
+  public JdbcTemplate initAccountJdbcTemplate(@Qualifier("accountProxyDs") DataSource dataSou) {
+    final JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSou);
     return jdbcTemplate;
   }
 

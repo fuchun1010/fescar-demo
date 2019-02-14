@@ -1,5 +1,8 @@
 package com.tank.config;
 
+import com.alibaba.fescar.spring.annotation.GlobalTransactionScanner;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 /**
@@ -9,14 +12,12 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class FescarConfig {
 
-  //TODO need start server and test is ok
+  @Bean
+  public GlobalTransactionScanner globalTransactionScanner() {
+    GlobalTransactionScanner globalTransactionScanner = new GlobalTransactionScanner(this.applicationId, "receivables",1);
+    return globalTransactionScanner;
+  }
 
-//  @Bean
-//  public GlobalTransactionScanner globalTransactionScanner() {
-//    GlobalTransactionScanner globalTransactionScanner = new GlobalTransactionScanner(applicationId, "receivables");
-//    return globalTransactionScanner;
-//  }
-//
-//  @Value("${spring.application.name}")
-//  private String applicationId;
+  @Value("${spring.application.name}")
+  private String applicationId;
 }

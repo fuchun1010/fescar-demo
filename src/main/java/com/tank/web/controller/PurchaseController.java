@@ -2,8 +2,7 @@ package com.tank.web.controller;
 
 import com.google.common.base.Preconditions;
 import com.google.common.collect.Maps;
-import com.tank.service.AccountService;
-import com.tank.service.OrderService;
+import com.tank.service.MixedService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -24,12 +23,12 @@ import java.util.Objects;
 public class PurchaseController {
 
   @PostMapping("/purchase")
-  public ResponseEntity<Map<String, Object>> createOrder(@RequestBody final Map<String, Object> request) {
+  public ResponseEntity<Map<String, Object>> createOrder(@RequestBody final Map<String, Object> request) throws Exception {
     final Map<String, Object> response = Maps.newHashMap();
     System.out.println("request size = [" + request.size() + "]");
     response.putIfAbsent("status", "ok");
 
-    Preconditions.checkArgument(Objects.nonNull(this.orderService));
+    Preconditions.checkArgument(Objects.nonNull(this.mixedService));
     final String[] parameters = new String[]{"code", "quality", "unitPrice"};
 
     Arrays.stream(parameters).forEach(p -> Preconditions.checkArgument(Objects.nonNull(request.get(p))));
@@ -40,18 +39,13 @@ public class PurchaseController {
     final String name = (String) request.get("name");
     final Double money = quality * unitPrice;
 
-
-    this.orderService.createOrder(code, quality, unitPrice);
-
-    this.accountService.deduct(name, money);
+    this.mixedService.createOrder(name, money, code, quality, unitPrice);
 
     return ResponseEntity.ok(response);
   }
 
 
   @Autowired
-  private OrderService orderService;
+  private MixedService mixedService;
 
-  @Autowired
-  private AccountService accountService;
 }

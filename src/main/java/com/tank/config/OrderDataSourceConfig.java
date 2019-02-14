@@ -49,8 +49,8 @@ public class OrderDataSourceConfig {
   }
 
   @Bean("orderJdbcTemplate")
-  public JdbcTemplate initAccountJdbcTemplate(@Qualifier("orderDs") DruidDataSource druidDataSource) {
-    final JdbcTemplate jdbcTemplate = new JdbcTemplate(druidDataSource);
+  public JdbcTemplate initAccountJdbcTemplate(@Qualifier("orderProxyDs") DataSource dataSource) {
+    final JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
     return jdbcTemplate;
   }
 
